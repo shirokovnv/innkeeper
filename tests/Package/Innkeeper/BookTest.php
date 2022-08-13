@@ -7,6 +7,7 @@ namespace Shirokovnv\Innkeeper\Tests\Package\Innkeeper;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Shirokovnv\Innkeeper\Constants;
 use Shirokovnv\Innkeeper\Models\Booking;
 use Shirokovnv\Innkeeper\Tests\Room;
 
@@ -32,8 +33,8 @@ class BookTest extends InnkeeperTestCase
         $this->assertInstanceOf(Booking::class, $booking);
         $this->assertEquals($room->id, $booking->bookable_id);
         $this->assertEquals(Room::class, $booking->bookable_type);
-        $this->assertEquals($started_at->format('Y-m-d H:i:s'), $booking->started_at);
-        $this->assertEquals($ended_at->format('Y-m-d H:i:s'), $booking->ended_at);
+        $this->assertEquals($started_at->format(Constants::MYSQL_DATE_FORMAT), $booking->started_at);
+        $this->assertEquals($ended_at->format(Constants::MYSQL_DATE_FORMAT), $booking->ended_at);
     }
 
     /**

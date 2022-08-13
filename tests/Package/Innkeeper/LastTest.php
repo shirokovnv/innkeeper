@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Shirokovnv\Innkeeper\Tests\Package\Innkeeper;
 
 use Illuminate\Support\Carbon;
+use Shirokovnv\Innkeeper\Constants;
 use Shirokovnv\Innkeeper\Tests\Room;
 
 /**
@@ -26,6 +27,6 @@ class LastTest extends InnkeeperTestCase
         $this->createBookingsForRoom($room->id, $initial_date, 1, 2);
 
         $last_booking = $innkeeper->last($room);
-        $this->assertEquals($initial_date->addHours(2)->format('Y-m-d H:i:s'), $last_booking->ended_at);
+        $this->assertEquals($initial_date->addHours(2)->format(Constants::MYSQL_DATE_FORMAT), $last_booking->ended_at);
     }
 }

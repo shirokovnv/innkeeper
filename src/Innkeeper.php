@@ -16,20 +16,20 @@ class Innkeeper implements Innkeepable
     {
         return !$bookable->bookings()
             ->where(function ($query) use ($started_at, $ended_at) {
-                $query->where('started_at', '>', $started_at->format('Y-m-d H:i:s'))
-                    ->where('started_at', '<', $ended_at->format('Y-m-d H:i:s'));
+                $query->where('started_at', '>', $started_at->format(Constants::MYSQL_DATE_FORMAT))
+                    ->where('started_at', '<', $ended_at->format(Constants::MYSQL_DATE_FORMAT));
             })
             ->orWhere(function ($query) use ($started_at, $ended_at) {
-                $query->where('ended_at', '>', $started_at->format('Y-m-d H:i:s'))
-                    ->where('ended_at', '<', $ended_at->format('Y-m-d H:i:s'));
+                $query->where('ended_at', '>', $started_at->format(Constants::MYSQL_DATE_FORMAT))
+                    ->where('ended_at', '<', $ended_at->format(Constants::MYSQL_DATE_FORMAT));
             })
             ->orWhere(function ($query) use ($started_at, $ended_at) {
-                $query->where('started_at', '<', $started_at->format('Y-m-d H:i:s'))
-                    ->where('ended_at', '>', $ended_at->format('Y-m-d H:i:s'));
+                $query->where('started_at', '<', $started_at->format(Constants::MYSQL_DATE_FORMAT))
+                    ->where('ended_at', '>', $ended_at->format(Constants::MYSQL_DATE_FORMAT));
             })
             ->orWhere(function ($query) use ($started_at, $ended_at) {
-                $query->where('started_at', '=', $started_at->format('Y-m-d H:i:s'))
-                    ->where('ended_at', '=', $ended_at->format('Y-m-d H:i:s'));
+                $query->where('started_at', '=', $started_at->format(Constants::MYSQL_DATE_FORMAT))
+                    ->where('ended_at', '=', $ended_at->format(Constants::MYSQL_DATE_FORMAT));
             })
             ->exists();
     }
@@ -49,8 +49,8 @@ class Innkeeper implements Innkeepable
                 'bookable_id' => $bookable->getId(),
                 'bookable_type' => $bookable->getType(),
                 'hash' => $hash,
-                'started_at' => $started_at->format('Y-m-d H:i:s'),
-                'ended_at' => $ended_at->format('Y-m-d H:i:s'),
+                'started_at' => $started_at->format(Constants::MYSQL_DATE_FORMAT),
+                'ended_at' => $ended_at->format(Constants::MYSQL_DATE_FORMAT),
             ]
         );
     }
@@ -93,8 +93,8 @@ class Innkeeper implements Innkeepable
     public function deleteByRange(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): void
     {
         $bookable->bookings()
-            ->where('started_at', '=', $started_at->format('Y-m-d H:i:s'))
-            ->where('ended_at', '=', $ended_at->format('Y-m-d H:i:s'))
+            ->where('started_at', '=', $started_at->format(Constants::MYSQL_DATE_FORMAT))
+            ->where('ended_at', '=', $ended_at->format(Constants::MYSQL_DATE_FORMAT))
             ->delete();
     }
 

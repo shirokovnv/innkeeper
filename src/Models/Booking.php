@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
+use Shirokovnv\Innkeeper\Constants;
 use Shirokovnv\Innkeeper\Database\Factories\BookingFactory;
 
 /**
@@ -40,7 +41,7 @@ class Booking extends Model
     /**
      * @var string
      */
-    protected $dateFormat = 'Y-m-d H:i:s';
+    protected $dateFormat = Constants::MYSQL_DATE_FORMAT;
 
     /**
      * The attributes that should be cast.
