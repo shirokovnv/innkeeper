@@ -1,5 +1,6 @@
 # Innkeeper
 
+![ci.yml][link-ci]
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 
@@ -226,6 +227,7 @@ MIT. Please see the [license file](license.md) for more information.
 [ico-version]: https://img.shields.io/packagist/v/shirokovnv/innkeeper.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/shirokovnv/innkeeper.svg?style=flat-square
 
+[link-ci]: https://github.com/shirokovnv/innkeeper/actions/workflows/ci.yml/badge.svg
 [link-packagist]: https://packagist.org/packages/shirokovnv/innkeeper
 [link-downloads]: https://packagist.org/packages/shirokovnv/innkeeper
 [link-author]: https://github.com/shirokovnv
