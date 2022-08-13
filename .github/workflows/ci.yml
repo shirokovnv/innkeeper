@@ -21,6 +21,9 @@ jobs:
     
     steps:
     
+    - name: Checkout code
+      uses: actions/checkout@v2
+              
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -30,6 +33,9 @@ jobs:
     
     - name: Check PHP Version
       run: php -v
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
 
     - name: Get composer cache directory
       id: composer-cache
@@ -41,9 +47,6 @@ jobs:
         path: ${{ steps.composer-cache.outputs.dir }}
         key: ${{ runner.os }}-${{ matrix.setup }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: ${{ runner.os }}-composer-
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
 
     - name: Install dependencies
       run: composer install --prefer-dist
