@@ -177,7 +177,7 @@ $booking_collection = $innkeeper->all($room);
 $first_booking = $innkeeper->first($room);
 
 // The last ended booking
-$ended_booking = $innkeeper->last($room);
+$last_booking = $innkeeper->last($room);
 ```
 
 ### Delete bookings
