@@ -50,7 +50,9 @@ class Innkeeper implements Innkeepable
         \DateTimeInterface $ended_at
     ): Booking {
         if ($started_at > $ended_at) {
-            throw new WrongDateIntervalException();
+            throw new WrongDateIntervalException(
+                'Wrong booking date interval: start date should be less than end date.'
+            );
         }
 
         /* @phpstan-ignore-next-line */
