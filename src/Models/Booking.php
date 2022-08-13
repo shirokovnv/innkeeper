@@ -37,6 +37,9 @@ class Booking extends Model
         'ended_at',
     ];
 
+    /**
+     * @var string
+     */
     protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
