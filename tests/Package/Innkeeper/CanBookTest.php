@@ -47,6 +47,7 @@ class CanBookTest extends InnkeeperTestCase
 
         $this->createBookingsForRoom($room->id, $initial_date, 1, 2);
 
+        $this->assertFalse($innkeeper->canBook($room, $initial_date, $initial_date->subHour()));
         $this->assertFalse($innkeeper->canBook($room, $initial_date, $initial_date->addHour()));
         $this->assertFalse($innkeeper->canBook($room, $initial_date->subHour(), $initial_date->addMinutes(30)));
         $this->assertFalse($innkeeper->canBook($room, $initial_date->addMinutes(90), $initial_date->addHours(3)));

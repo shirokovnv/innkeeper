@@ -5,6 +5,7 @@ namespace Shirokovnv\Innkeeper;
 use Illuminate\Support\Collection;
 use Shirokovnv\Innkeeper\Contracts\Bookable;
 use Shirokovnv\Innkeeper\Contracts\Innkeepable;
+use Shirokovnv\Innkeeper\Exceptions\WrongDateInterval;
 use Shirokovnv\Innkeeper\Models\Booking;
 
 class Innkeeper implements Innkeepable
@@ -14,6 +15,10 @@ class Innkeeper implements Innkeepable
      */
     public function canBook(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): bool
     {
+        if ($started_at > $ended_at) {
+            return false;
+        }
+
         return !$bookable->bookings()
             ->where(function ($query) use ($started_at, $ended_at) {
                 $query->where('started_at', '>', $started_at->format(Constants::MYSQL_DATE_FORMAT))
@@ -36,6 +41,7 @@ class Innkeeper implements Innkeepable
 
     /**
      * @inheritDoc
+     * @throws \WrongDateInterval
      */
     public function book(
         Bookable $bookable,
@@ -43,6 +49,10 @@ class Innkeeper implements Innkeepable
         \DateTimeInterface $started_at,
         \DateTimeInterface $ended_at
     ): Booking {
+        if ($started_at > $ended_at) {
+            throw new WrongDateInterval();
+        }
+
         /* @phpstan-ignore-next-line */
         return $bookable->bookings()->create(
             [
