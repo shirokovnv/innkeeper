@@ -30,7 +30,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Shirokovnv\\Innkeeper\\Tests\\": "tests"
+            "Shirokovnv\\Innkeeper\\Tests\\": "tests",
+            "Shirokovnv\\Innkeeper\\Tests\\Database\\Factories\\": "tests/database/factories/"
         }
     },
     "scripts": {
