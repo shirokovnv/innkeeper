@@ -8,7 +8,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Shirokovnv\Innkeeper\Constants;
-use Shirokovnv\Innkeeper\Exceptions\WrongDateInterval;
+use Shirokovnv\Innkeeper\Exceptions\WrongDateIntervalException;
 use Shirokovnv\Innkeeper\Models\Booking;
 use Shirokovnv\Innkeeper\Tests\Room;
 
@@ -69,7 +69,7 @@ class BookTest extends InnkeeperTestCase
         $initial_date = Carbon::now()->toImmutable();
         $booking_hash = Str::random();
 
-        $this->expectException(WrongDateInterval::class);
+        $this->expectException(WrongDateIntervalException::class);
 
         $innkeeper->book($room, $booking_hash, $initial_date, $initial_date->subHour());
     }

@@ -5,7 +5,7 @@ namespace Shirokovnv\Innkeeper;
 use Illuminate\Support\Collection;
 use Shirokovnv\Innkeeper\Contracts\Bookable;
 use Shirokovnv\Innkeeper\Contracts\Innkeepable;
-use Shirokovnv\Innkeeper\Exceptions\WrongDateInterval;
+use Shirokovnv\Innkeeper\Exceptions\WrongDateIntervalException;
 use Shirokovnv\Innkeeper\Models\Booking;
 
 class Innkeeper implements Innkeepable
@@ -50,7 +50,7 @@ class Innkeeper implements Innkeepable
         \DateTimeInterface $ended_at
     ): Booking {
         if ($started_at > $ended_at) {
-            throw new WrongDateInterval();
+            throw new WrongDateIntervalException();
         }
 
         /* @phpstan-ignore-next-line */
