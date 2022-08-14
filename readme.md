@@ -124,7 +124,7 @@ $room = \App\Models\Room::find(1);
 $booking_hash = generateBookingHash($room->id, $started_at, $ended_at);
 
 try {
-    $innkeeper->book($room, $started_at, $ended_at);
+    $innkeeper->book($room, $booking_hash, $started_at, $ended_at);
 } catch (QueryException $exception) {
     // show user popup with apologies or
     // redirect to another free room or ...
