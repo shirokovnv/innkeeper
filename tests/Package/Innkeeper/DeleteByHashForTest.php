@@ -10,9 +10,9 @@ use Shirokovnv\Innkeeper\Models\Booking;
 use Shirokovnv\Innkeeper\Tests\Room;
 
 /**
- * @covers \Shirokovnv\Innkeeper\Innkeeper::deleteByHash
+ * @covers \Shirokovnv\Innkeeper\Innkeeper::deleteByHashFor
  */
-class DeleteByHashTest extends InnkeeperTestCase
+class DeleteByHashForTest extends InnkeeperTestCase
 {
     /**
      * @return void
@@ -36,10 +36,10 @@ class DeleteByHashTest extends InnkeeperTestCase
             ]
         );
 
-        $this->assertEquals(1, $innkeeper->all($room)->count());
+        $this->assertEquals(1, $innkeeper->allFor($room)->count());
 
-        $innkeeper->deleteByHash($room, $booking_hash);
+        $innkeeper->deleteByHashFor($room, $booking_hash);
 
-        $this->assertEquals(0, $innkeeper->all($room)->count());
+        $this->assertEquals(0, $innkeeper->allFor($room)->count());
     }
 }
