@@ -128,6 +128,7 @@ $booking_hash = generateBookingHash($room->id, $started_at, $ended_at);
 try {
     $innkeeper->book($room, $booking_hash, $started_at, $ended_at);
 } catch (QueryException $exception) {
+    // Catch SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: bookings.hash
     // show user popup with apologies or
     // redirect to another free room or ...
 }
