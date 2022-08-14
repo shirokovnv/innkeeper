@@ -41,7 +41,7 @@ class Innkeeper implements Innkeepable
 
     /**
      * @inheritDoc
-     * @throws \WrongDateInterval
+     * @throws WrongDateIntervalException
      */
     public function book(
         Bookable $bookable,
