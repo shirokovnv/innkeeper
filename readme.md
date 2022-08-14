@@ -173,23 +173,17 @@ $room = \App\Models\Room::find(1);
 
 $innkeeper = app()->make(Innkeepable::class);
 
-// All the bookings
-$bookings = $innkeeper->all();
-
-// All the bookings in range
-$bookings = $innkeeper->allInRange($started_at, $ended_at);
-
 // All the bookings for the room
-$bookings = $innkeeper->allFor($room);
+$bookings = $innkeeper->all($room);
 
-// All the bookings for the room in specific range.
-$bookings = $innkeeper->allInRangeFor($room, $started_at, $ended_at);
+// All the bookings for the room in a range.
+$bookings = $innkeeper->allInRange($room, $started_at, $ended_at);
 
 // The first started booking
-$first_booking = $innkeeper->firstFor($room);
+$first_booking = $innkeeper->first($room);
 
 // The last ended booking
-$last_booking = $innkeeper->lastFor($room);
+$last_booking = $innkeeper->last($room);
 ```
 
 ### Delete bookings
@@ -200,13 +194,13 @@ $room = \App\Models\Room::find(1);
 $booking_hash = 'some hash';
 
 // Delete by predefined hash
-$innkeeper->deleteByHashFor($room, $booking_hash);
+$innkeeper->deleteByHash($room, $booking_hash);
 
 $started_at = new DateTime('2022-08-01 09:00');
 $ended_at = new DateTime('2022-08-02 09:00');
 
 // Delete by specific date range.
-$innkeeper->deleteByRangeFor($room, $started_at, $ended_at);
+$innkeeper->deleteByRange($room, $started_at, $ended_at);
 ```
 
 ## Change log

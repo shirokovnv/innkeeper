@@ -36,28 +36,12 @@ interface Innkeepable
     ): Booking;
 
     /**
-     * Get all the bookings.
-     *
-     * @return Collection<Booking>
-     */
-    public function all(): Collection;
-
-    /**
-     * Get all the bookings in a date range.
-     *
-     * @param \DateTimeInterface $started_at
-     * @param \DateTimeInterface $ended_at
-     * @return Collection
-     */
-    public function allInRange(\DateTimeInterface $started_at, \DateTimeInterface $ended_at): Collection;
-
-    /**
      * Get all the bookings for the bookable.
      *
      * @param Bookable $bookable
      * @return Collection<Booking>
      */
-    public function allFor(Bookable $bookable): Collection;
+    public function all(Bookable $bookable): Collection;
 
     /**
      * Get all the bookings for the bookable in a date range.
@@ -67,7 +51,7 @@ interface Innkeepable
      * @param \DateTimeInterface $ended_at
      * @return Collection
      */
-    public function allInRangeFor(
+    public function allInRange(
         Bookable $bookable,
         \DateTimeInterface $started_at,
         \DateTimeInterface $ended_at
@@ -79,7 +63,7 @@ interface Innkeepable
      * @param Bookable $bookable
      * @return Booking|null
      */
-    public function firstFor(Bookable $bookable): ?Booking;
+    public function first(Bookable $bookable): ?Booking;
 
     /**
      * Get the latest ended booking for the bookable.
@@ -87,7 +71,7 @@ interface Innkeepable
      * @param Bookable $bookable
      * @return Booking|null
      */
-    public function lastFor(Bookable $bookable): ?Booking;
+    public function last(Bookable $bookable): ?Booking;
 
     /**
      * Delete by date range.
@@ -97,7 +81,7 @@ interface Innkeepable
      * @param \DateTimeInterface $ended_at
      * @return void
      */
-    public function deleteByRangeFor(
+    public function deleteByRange(
         Bookable $bookable,
         \DateTimeInterface $started_at,
         \DateTimeInterface $ended_at
@@ -110,5 +94,5 @@ interface Innkeepable
      * @param string $hash
      * @return void
      */
-    public function deleteByHashFor(Bookable $bookable, string $hash): void;
+    public function deleteByHash(Bookable $bookable, string $hash): void;
 }

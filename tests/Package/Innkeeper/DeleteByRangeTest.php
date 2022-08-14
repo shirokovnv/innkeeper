@@ -8,9 +8,9 @@ use Illuminate\Support\Carbon;
 use Shirokovnv\Innkeeper\Tests\Room;
 
 /**
- * @covers \Shirokovnv\Innkeeper\Innkeeper::deleteByRangeFor
+ * @covers \Shirokovnv\Innkeeper\Innkeeper::deleteByRange
  */
-class DeleteByRangeForTest extends InnkeeperTestCase
+class DeleteByRangeTest extends InnkeeperTestCase
 {
     /**
      * @return void
@@ -25,10 +25,10 @@ class DeleteByRangeForTest extends InnkeeperTestCase
         $initial_date = Carbon::now()->toImmutable();
         $this->createBookingsForRoom($room->id, $initial_date, 1, 1);
 
-        $this->assertEquals(1, $innkeeper->allFor($room)->count());
+        $this->assertEquals(1, $innkeeper->all($room)->count());
 
-        $innkeeper->deleteByRangeFor($room, $initial_date, $initial_date->addHour());
+        $innkeeper->deleteByRange($room, $initial_date, $initial_date->addHour());
 
-        $this->assertEquals(0, $innkeeper->allFor($room)->count());
+        $this->assertEquals(0, $innkeeper->all($room)->count());
     }
 }

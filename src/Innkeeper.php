@@ -70,26 +70,7 @@ class Innkeeper implements Innkeepable
     /**
      * @inheritDoc
      */
-    public function all(): Collection
-    {
-        return Booking::all();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function allInRange(\DateTimeInterface $started_at, \DateTimeInterface $ended_at): Collection
-    {
-        return Booking::query()
-            ->where('started_at', '>=', $started_at->format(Constants::MYSQL_DATE_FORMAT))
-            ->where('ended_at', '<=', $ended_at->format(Constants::MYSQL_DATE_FORMAT))
-            ->get();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function allFor(Bookable $bookable): Collection
+    public function all(Bookable $bookable): Collection
     {
         return $bookable->bookings()->get();
     }
@@ -97,7 +78,7 @@ class Innkeeper implements Innkeepable
     /**
      * @inheritDoc
      */
-    public function allInRangeFor(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): Collection
+    public function allInRange(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): Collection
     {
         return $bookable->bookings()
             ->where('started_at', '>=', $started_at->format(Constants::MYSQL_DATE_FORMAT))
@@ -108,7 +89,7 @@ class Innkeeper implements Innkeepable
     /**
      * @inheritDoc
      */
-    public function firstFor(Bookable $bookable): ?Booking
+    public function first(Bookable $bookable): ?Booking
     {
         $booking = $bookable->bookings()
             ->orderBy('started_at')
@@ -120,7 +101,7 @@ class Innkeeper implements Innkeepable
     /**
      * @inheritDoc
      */
-    public function lastFor(Bookable $bookable): ?Booking
+    public function last(Bookable $bookable): ?Booking
     {
         $booking = $bookable->bookings()
             ->latest('ended_at')
@@ -132,7 +113,7 @@ class Innkeeper implements Innkeepable
     /**
      * @inheritDoc
      */
-    public function deleteByRangeFor(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): void
+    public function deleteByRange(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): void
     {
         $bookable->bookings()
             ->where('started_at', '=', $started_at->format(Constants::MYSQL_DATE_FORMAT))
@@ -143,7 +124,7 @@ class Innkeeper implements Innkeepable
     /**
      * @inheritDoc
      */
-    public function deleteByHashFor(Bookable $bookable, string $hash): void
+    public function deleteByHash(Bookable $bookable, string $hash): void
     {
         $bookable->bookings()
             ->where('hash', '=', $hash)

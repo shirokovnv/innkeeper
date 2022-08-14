@@ -9,14 +9,14 @@ use Shirokovnv\Innkeeper\Constants;
 use Shirokovnv\Innkeeper\Tests\Room;
 
 /**
- * @covers \Shirokovnv\Innkeeper\Innkeeper::firstFor
+ * @covers \Shirokovnv\Innkeeper\Innkeeper::last
  */
-class FirstForTest extends InnkeeperTestCase
+class LastTest extends InnkeeperTestCase
 {
     /**
      * @return void
      */
-    public function testGetFirstBooking(): void
+    public function testGetLast(): void
     {
         $innkeeper = $this->getInnkeeper();
 
@@ -24,9 +24,9 @@ class FirstForTest extends InnkeeperTestCase
         $room = Room::newFactory()->create();
 
         $initial_date = Carbon::now()->toImmutable();
-        $this->createBookingsForRoom($room->id, $initial_date, 1, 5);
+        $this->createBookingsForRoom($room->id, $initial_date, 1, 2);
 
-        $first_booking = $innkeeper->firstFor($room);
-        $this->assertEquals($initial_date->format(Constants::MYSQL_DATE_FORMAT), $first_booking->started_at);
+        $last_booking = $innkeeper->last($room);
+        $this->assertEquals($initial_date->addHours(2)->format(Constants::MYSQL_DATE_FORMAT), $last_booking->ended_at);
     }
 }
