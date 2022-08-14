@@ -53,7 +53,8 @@ $room = \App\Models\Room::find(1);
 
 $innkeeper = app()->make(Innkeepable::class);
 
-$canBeBooked = $innkeeper->canBook(
+// Has bookings in a date range ?
+$hasBookings = $innkeeper->exists(
     $room,
     new DateTime('2022-08-01 15:00'), 
     new DateTime('2022-08-07 12:00')
@@ -152,7 +153,7 @@ you may still have a problem with duplicates.
 Of course, you can check the availability of the room: 
 
 ```php
-$canBeBooked = $innkeeper->canBook($room, $started_at, $ended_at);
+$canBeBooked = ! $innkeeper->exists($room, $started_at, $ended_at);
 if ($canBeBooked) {
     $innkeeper->book($room, $booking_hash, $started_at, $ended_at);
 } else {

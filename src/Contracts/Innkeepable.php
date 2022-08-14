@@ -10,14 +10,14 @@ use Shirokovnv\Innkeeper\Models\Booking;
 interface Innkeepable
 {
     /**
-     * Checks for opportunity to book in a specified date range.
+     * Check any booking exists in a specified date range.
      *
      * @param Bookable $bookable
      * @param \DateTimeInterface $started_at
      * @param \DateTimeInterface $ended_at
      * @return bool
      */
-    public function canBook(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): bool;
+    public function exists(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): bool;
 
     /**
      * Makes a reservation in a specified date range.

@@ -13,13 +13,13 @@ class Innkeeper implements Innkeepable
     /**
      * @inheritDoc
      */
-    public function canBook(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): bool
+    public function exists(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at): bool
     {
         if ($started_at > $ended_at) {
             return false;
         }
 
-        return !$bookable->bookings()
+        return $bookable->bookings()
             ->where(function ($query) use ($started_at, $ended_at) {
                 $query->where('started_at', '>', $started_at->format(Constants::MYSQL_DATE_FORMAT))
                     ->where('started_at', '<', $ended_at->format(Constants::MYSQL_DATE_FORMAT));

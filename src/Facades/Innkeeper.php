@@ -9,7 +9,7 @@ use Shirokovnv\Innkeeper\Contracts\Innkeepable;
 use Shirokovnv\Innkeeper\Models\Booking;
 
 /**
- * @method static bool canBook(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at)
+ * @method static bool exists(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at)
  * @method static Booking book(Bookable $bookable, string $hash, \DateTimeInterface $started_at, \DateTimeInterface $ended_at)
  * @method static Collection all(Bookable $bookable)
  * @method static Collection allInRange(Bookable $bookable, \DateTimeInterface $started_at, \DateTimeInterface $ended_at)
