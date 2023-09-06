@@ -5,7 +5,7 @@
 SHELL = /bin/sh
 RUN_APP_ARGS = --rm --user "$(shell id -u):$(shell id -g)"
 
-.PHONY : help build latest install lowest test test-cover shell clean
+.PHONY : help build latest install lowest lint test test-cover shell clean
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -24,6 +24,9 @@ install: clean ## Install regular php dependencies
 
 lowest: clean ## Install lowest php dependencies
 	docker-compose run $(RUN_APP_ARGS) app composer update -n --ansi --prefer-dist --prefer-lowest
+
+lint: ## Execute linters
+	docker-compose run $(RUN_APP_ARGS) app composer lint
 
 test: ## Execute php tests and linters
 	docker-compose run $(RUN_APP_ARGS) app composer test
