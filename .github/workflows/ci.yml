@@ -16,6 +16,7 @@ jobs:
 
     strategy:
       matrix:
+        setup: [basic, lowest]
         operating-system: ['ubuntu-latest']
         php-versions: ['8.0', '8.1', '8.2']
 
@@ -48,8 +49,13 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.setup }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: ${{ runner.os }}-composer-
 
-    - name: Install dependencies
-      run: composer install --prefer-dist
+    - name: Install lowest dependencies
+      if: matrix.setup == 'lowest'
+      run: composer update --prefer-dist --prefer-lowest --ansi
+
+    - name: Install basic dependencies
+      if: matrix.setup == 'basic'
+      run: composer update --prefer-dist --ansi
 
     - name: Check format
       run: composer run-script sniff
