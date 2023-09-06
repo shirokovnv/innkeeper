@@ -6,7 +6,7 @@
 
 The library for your next [Laravel](https://laravel.com/) booking app.
 
-**Supported Laravel versions: `>=8.x`**
+**Supported Laravel versions: `>=9.x`**
 
 ## Installation
 
