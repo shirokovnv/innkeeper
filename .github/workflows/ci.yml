@@ -20,6 +20,9 @@ jobs:
         setup: [basic, lowest]
         operating-system: ['ubuntu-latest']
         php-versions: ['8.0', '8.1', '8.2']
+        exclude:
+          - setup: 'lowest'
+            php-version: '8.2'
 
     steps:
 
