@@ -15,6 +15,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
+      fail-fast: false
       matrix:
         setup: [basic, lowest]
         operating-system: ['ubuntu-latest']
