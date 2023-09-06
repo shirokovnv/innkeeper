@@ -12,7 +12,7 @@
     "homepage": "https://github.com/shirokovnv/innkeeper",
     "keywords": ["Laravel", "Innkeeper", "Booking"],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": ">= 8.0",
         "illuminate/database": "~8|~9",
         "illuminate/support": "~8|~9"
     },
