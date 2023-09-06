@@ -9,11 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Support for Laravel `v10.x`
+- Support for Laravel `10.x`
 
 ### Changed
 
 - BREAKING CHANGE: Minimum PHP version is set to `8.0`
+- Minimum `illuminate/database` package version is set to `9.x`
+- Minimum `illuminate/support` package version is set to `9.x`
 
 ## Version 1.0.0
 
